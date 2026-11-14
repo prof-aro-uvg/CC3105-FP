@@ -26,7 +26,7 @@ jobs:
     outputs:
       image: ${{ steps.vars.outputs.image }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - id: vars
         run: echo "image=${REGISTRY}/${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
       - uses: docker/setup-buildx-action@v3
@@ -62,7 +62,7 @@ jobs:
       DO_USER: ${{ vars.DO_USER || 'cc3105' }}
       IMAGE: ${{ needs.publish.outputs.image }}:sha-${{ github.sha }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Configurar SSH
         env:
           DO_SSH_KEY: ${{ secrets.DO_SSH_KEY }}
